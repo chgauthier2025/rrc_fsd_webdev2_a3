@@ -19,13 +19,13 @@
 <body>
     <?php include('nav.php'); ?>
     <!-- How many database table rows did we SELECT? -->
-    <h1>Found <?= $statement->rowCount() ?> Rows</h1>
-    
-    <ul>
-        <?php while($row= $statement->fetch()): ?>
-            <li> <?= $row['content'] ?> By <?=$row['author']?> </li>
-        <?php endwhile ?>
-    </ul>
+        <h1>Found <?= $statement->rowCount() ?> Rows</h1>
+        
+        <ul>
+            <?php while($row= $statement->fetch()): ?>
+                <li> <?= $row['content'] ?> By <?=$row['author']?> </li>
+            <?php endwhile ?>
+        </ul>
 
 </body>
 </html>

@@ -1,17 +1,18 @@
 <?php
     require('db_connect.php');
-    
-    // Build and prepare SQL String with :id placeholder parameter.
-    $query = "SELECT * FROM quotes WHERE id = :id LIMIT 1";
+    //tutorial for PDO https://www.youtube.com/watch?v=Li90TQap1bc
+    $query = "select * from quotes where id = ?";
+    //pdo will sanitize your query for you
     $statement = $db->prepare($query);
-    
+
     // Sanitize $_GET['id'] to ensure it's a number.
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-    
+
+    echo ("ID: " . $id);
     // Bind the :id parameter in the query to the sanitized
     // $id specifying a binding-type of Integer.
-    $statement->bindValue('id', $id, PDO::PARAM_INT);
-    $statement->execute();
+    //$statement->bindValue('id', $id, PDO::PARAM_INT);
+    $statement->execute(array($id));
     
     // Fetch the row selected by primary key id.
     $row = $statement->fetch();
